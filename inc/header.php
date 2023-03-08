@@ -1,7 +1,7 @@
 <?php
 include_once "./sysgem/session.php";
 include_once "./sysgem/dbHacker.php";
-
+include_once "./sysgem/member.php";
 
 ?>
 

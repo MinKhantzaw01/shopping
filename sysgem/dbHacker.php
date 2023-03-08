@@ -35,6 +35,20 @@ function insertUser($name,$email,$password,$phone){
   
 }
 
+function insertOrderUser($name,$email,$pass,$phone,$address,$node){
+    $pass=encodePass($pass);
+    $curtime=getTimeNow();
+    $db=dbConnect();
+    $qry = "INSERT INTO cart(name,email,password,phone,address,note,created_at)
+         VALUES ('$name','$email','$pass','$phone','$address','$node','$curtime')";
+    $result = mysqli_query($db,$qry);
+    if($result==1){
+        return "Order Success!";
+    }else{
+        return "Order Fail!";
+    }
+
+}
 function userLogin($email,$password){
     $password=encodePass($password);
     $db=dbConnect();
@@ -53,7 +67,7 @@ function userLogin($email,$password){
     }
 }
 function getTimeNow(){
-    return date("Y-m-d H:m:s",time());
+    return date("Y-m-d",time());
 }
 function encodePass($pass){
     $pass = md5($pass);
@@ -62,4 +76,5 @@ function encodePass($pass){
 
     return $pass;
 }
+
 ?>

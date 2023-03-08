@@ -1,11 +1,38 @@
 <?php
 include_once "./inc/html_head.php";
-include_once "./inc/header.php";
-if(isset($_POST['submit'])){
-    $name=$_POST['name'];
-    
-}
+include_once "./sysgem/member.php";
 
+if(isset($_POST["submit"])){
+    $name=$_POST["name"];
+    $email=$_POST["email"];
+    $pass=$_POST["pass"];
+    $phone=$_POST["phone"];
+    $address=$_POST["add1"];
+    $node=$_POST["node"];
+    $res=OrderUser($name,$email,$pass,$phone,$address,$node);
+    $order="";
+    switch($res){
+        case "Order Success!":
+            $order="Order Success!";
+            header("Location: complete-order.php");
+            break;
+        case "Order Fail!":
+            $order="Order Fail!";
+            break;
+        case "FALSE" :
+            $order = "Authentication FALSE";
+            break;
+        default : $order = "default value";
+            break;
+    }
+    echo '<div class="alert alert-warning alert-dismissible fade show mt-4" role="alert">
+    <strong>'.$order.'</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
+
+
+}
+include_once "./inc/header.php";
 ?>
 
     <!-- Body main wrapper start -->
@@ -358,7 +385,7 @@ if(isset($_POST['submit'])){
                                                                                     <div class="input-box mb-20">
                                                                                         <label>Password
                                                                                             <em>*</em></label>
-                                                                                        <input type="text"
+                                                                                        <input type="password"
                                                                                             name="pass" class="info"
                                                                                             placeholder="Password">
                                                                                     </div>

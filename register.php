@@ -1,5 +1,6 @@
 <?php
-
+include_once "./sysgem/member.php";
+include_once "./sysgem/session.php";
   
 if(isset($_POST["submit"])){
     $username = $_POST["username"];
@@ -14,7 +15,7 @@ if(isset($_POST["submit"])){
             setSession("username",$username);
             setSession("email",$email);
             if ($username==="minkhantzaw" && $email==="mink12392@gmail.com"){
-                header("Location: index.php");
+                header("Location: login.php");
             }else{
                 header("Location: index.php");
             }
@@ -122,8 +123,8 @@ include_once "./inc/header.php";
                 <input type="password" class="form-contorl english rounded-0" name="password" value="" id="password">
             </div>
             <div class="form-group">
-                <label for="password" class="english">Phone_Number</label><br>
-                <input type="password" class="form-contorl english rounded-0" name="phone" value="" id="phone">
+                <label for="phone" class="english">Phone_Number</label><br>
+                <input type="text" class="form-contorl english rounded-0" name="phone" value="" id="phone">
             </div>
             <div class="d-grid gap-2 mt-4">
                 <button class="btn btn-dark btn-lg" type="submit" name="submit">Register</button>

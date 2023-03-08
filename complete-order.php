@@ -711,9 +711,9 @@ include_once "./inc/header.php";
                                         </div>
                                         <!-- Checkout are end-->
                                     </div>
-                                    <div role="tabpanel" class="tab-pane fade show active" id="complete-order">
+                                    <div role="tabpanel" class="tab-pane fade show active " id="complete-order">
                                         <div class="row">
-                                            <div class="col-lg-12">
+                                            <div class="col-lg-12 ">
                                                 <div class="checkout-payment-area">
                                                     <div class="checkout-total mt20">
                                                         <h3>Your order</h3>
@@ -723,24 +723,12 @@ include_once "./inc/header.php";
                                                                     <thead>
                                                                         <tr class="cart_item check-heading">
                                                                             <td class="ctg-type"> Product</td>
+                                                                            <td class="ctg-type"> Name</td>
                                                                             <td class="cgt-des"> Total</td>
                                                                         </tr>
                                                                     </thead>
-                                                                    <tbody>
-                                                                        <tr class="cart_item check-item prd-name">
-                                                                            <td class="ctg-type"> Aenean sagittis ×
-                                                                                <span>1</span></td>
-                                                                            <td class="cgt-des"> $1,026.00</td>
-                                                                        </tr>
-                                                                        <tr class="cart_item check-item prd-name">
-                                                                            <td class="ctg-type"> Aenean sagittis ×
-                                                                                <span>1</span></td>
-                                                                            <td class="cgt-des"> $1,026.00</td>
-                                                                        </tr>
-                                                                        <tr class="cart_item">
-                                                                            <td class="ctg-type"> Subtotal</td>
-                                                                            <td class="cgt-des">$2,052.00</td>
-                                                                        </tr>
+                                                                    <tbody class="cartcom">
+                                                                       
                                                                         <tr class="cart_item">
                                                                             <td class="ctg-type">Shipping</td>
                                                                             <td class="cgt-des ship-opt">
@@ -759,13 +747,7 @@ include_once "./inc/header.php";
                                                                                 </div>
                                                                             </td>
                                                                         </tr>
-                                                                        <tr class="cart_item">
-                                                                            <td class="ctg-type crt-total"> Total
-                                                                            </td>
-                                                                            <td class="cgt-des prc-total"> $
-                                                                                2,055.00
-                                                                            </td>
-                                                                        </tr>
+                                                                      
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -795,12 +777,12 @@ include_once "./inc/header.php";
                                                                         <label for="pay-toggle04">Paypal</label>
                                                                     </div>
                                                                 </div>
-                                                                <div class="input-box mt-20">
+                                                                <div class="input-box mt-20" onclick="myFunction()">
                                                                     <a class="btn-def btn2" href="index.php">Complete order</a>
                                                                 </div>
                                                             </form>
                                                         </div>
-        
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -974,6 +956,7 @@ include_once "./inc/header.php";
     <script src="js/plugins.js"></script>
     <!-- Main js file that contents all jQuery plugins activation. -->
     <script src="js/main.js"></script>
+    <script src="./sysgem/main2.js"></script>
 
 </body>
 

@@ -17,6 +17,14 @@ function loginUser($email,$password){
     }
 }
 
+function OrderUser($name,$email,$pass,$phone,$address,$node){
+    if(usernameCheck($name) && emailCheck($email) && passwordCheck($pass)&&phoneCheck($phone)){
+        return insertOrderUser($name,$email,$pass,$phone,$address,$node);
+    }else{
+        echo "FALSE";
+    }
+}
+
 
 function usernameCheck($username){
     if(strlen($username) >= 6){
@@ -47,10 +55,11 @@ function passwordCheck($password){
 }
 function phonecheck($phone){
     if(strlen($phone)>=6){
-        $bol=preg_match("/^[\d]+$/",$password);
+        $bol=preg_match("/^[\d]+$/",$phone);
         return $bol;
     }else{
         return false;
     }
 }
+
 ?>
