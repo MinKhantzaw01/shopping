@@ -1,3 +1,6 @@
+<?php
+include_once "./sysgem/postGenerated.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,9 +22,7 @@
                 <li class="nav-item border-white border-bottom">
                   <a class="nav-link active" aria-current="page" href="postCreated.php">Post Created</a>
                 </li>
-                <li class="nav-item border-white border-bottom">
-                   <a class="nav-link active" aria-current="page" href="#">Post Deleted</a>
-                </li>
+             
               </ul>
             </div>
           </div>
@@ -29,77 +30,23 @@
     <div style="background: url('./images/abstract-dynamic-blue-orange-background_67845-1390.jpg'); height:300px;background-size:cover;background-repeat:no-repeat;" class="d-flex justify-content-center align-items-center text-white">
         <h1>Wellcome Admin</h1>
     </div>
-    <div class="card mt-3" style="width: 18rem;margin-left: 25px;float:right;">
-      <img class="card-img-top" src="./images/abstract-dynamic-blue-orange-background_67845-1390.jpg" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">product Name</h5>
-        <h5 class="card-text">220</h5>
-        <a href="postEdit.php" class="btn btn-info">edit</a>
-        <a href="#" class="btn btn-info" style="float:right">Deleted</a>
-      </div>
-    </div>
-    <div class="card mt-3" style="width: 18rem;margin-left: 25px;float:right;">
-      <img class="card-img-top" src="./images/abstract-dynamic-blue-orange-background_67845-1390.jpg" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">product Name</h5>
-        <h5 class="card-text">220</h5>
-        <a href="postEdit.php" class="btn btn-info">edit</a>
-        <a href="#" class="btn btn-info" style="float:right">Deleted</a>
-      </div>
-    </div>
-    <div class="card mt-3" style="width: 18rem;margin-left: 25px;float:right;">
-      <img class="card-img-top" src="./images/abstract-dynamic-blue-orange-background_67845-1390.jpg" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">product Name</h5>
-        <h5 class="card-text">220</h5>
-        <a href="postEdit.php" class="btn btn-info">edit</a>
-        <a href="#" class="btn btn-info" style="float:right">Deleted</a>
-      </div>
-    </div>
-    <div class="card mt-3" style="width: 18rem;margin-left: 25px;">
-      <img class="card-img-top" src="./images/abstract-dynamic-blue-orange-background_67845-1390.jpg" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">product Name</h5>
-        <h5 class="card-text">220</h5>
-        <a href="postEdit.php" class="btn btn-info">edit</a>
-        <a href="#" class="btn btn-info" style="float:right">Deleted</a>
-      </div>
-    </div>
-    <div class="card mt-3" style="width: 18rem;margin-left: 25px;float:right;">
-      <img class="card-img-top" src="./images/abstract-dynamic-blue-orange-background_67845-1390.jpg" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">product Name</h5>
-        <h5 class="card-text">220</h5>
-        <a href="postEdit.php" class="btn btn-info">edit</a>
-        <a href="#" class="btn btn-info" style="float:right">Deleted</a>
-      </div>
-    </div>
-    <div class="card mt-3" style="width: 18rem;margin-left: 25px;float:right;">
-      <img class="card-img-top" src="./images/abstract-dynamic-blue-orange-background_67845-1390.jpg" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">product Name</h5>
-        <h5 class="card-text">220</h5>
-        <a href="postEdit.php" class="btn btn-info">edit</a>
-        <a href="#" class="btn btn-info" style="float:right">Deleted</a>
-      </div>
-    </div>
-    <div class="card mt-3" style="width: 18rem;margin-left: 25px;float:right;">
-      <img class="card-img-top" src="./images/abstract-dynamic-blue-orange-background_67845-1390.jpg" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">product Name</h5>
-        <h5 class="card-text">220</h5>
-        <a href="postEdit.php" class="btn btn-info">edit</a>
-        <a href="#" class="btn btn-info" style="float:right">Deleted</a>
-      </div>
-    </div>
-    <div class="card mt-3" style="width: 18rem;margin-left: 25px;">
-      <img class="card-img-top" src="./images/abstract-dynamic-blue-orange-background_67845-1390.jpg" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">product Name</h5>
-        <h5 class="card-text">220</h5>
-        <a href="postEdit.php" class="btn btn-info">edit</a>
-        <a href="#" class="btn btn-info" style="float:right">Deleted</a>
-      </div>
+    <div class="row">
+    <?php
+    $result=getPost(1);
+      foreach($result as $post){
+        $pid=$post["id"];
+        echo '    <div class="card mt-3" style="width: 18rem;margin-left: 30px;height:fit-content">
+        <img class="card-img-top mt-2" src="./image/'.$post["img"].'" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">'.$post["name"].'</h5>
+          <h5 class="card-text">'.$post["price"].'</h5>
+          <a href="postEdit.php?pid='.$pid.'" class="btn btn-info">Edit</a>
+          <a href="./sysgem/delete.php?pid='.$pid.'" class="btn btn-info" style="float:right">Delete</a>
+        </div>
+      </div>';
+      
+      }
+?>
     </div>
       
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

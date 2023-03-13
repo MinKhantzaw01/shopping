@@ -1,3 +1,25 @@
+<?php
+include_once "./sysgem/postGenerated.php";
+if(isset($_POST["submit"])){
+    $name=$_POST["name"];
+    $price=$_POST["price"];
+    $type=$_POST["type"];
+    $imglink=mt_rand(time(),time())."_".$_FILES["file"]["name"].mt_rand(time(),time());
+    move_uploaded_file($_FILES['file']['tmp_name'],'image/'.$imglink);
+    $bol=insertPost($name,$price,$imglink,$type);
+    if($bol){
+        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Post Successfully Inserted!</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>';
+    }else{
+        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Post Inserted Fail!</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>';
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,22 +52,28 @@
         <h1>Creation Products</h1>
     </div>
     <div class="container">
-        <form method ="post" action ="admin.php" enctype="multipart/form-data" class="mt-5">
+        <form method ="post" action ="" enctype="multipart/form-data" class="mt-5">
             <div class="form-group mb-3">
                 <label for="productName" style="font-family: cambria;">Product Name</label>
-                <input class="form-control mt-2" type="text" placeholder="Product Name">
+                <input class="form-control mt-2" name="name" type="text" placeholder="Product Name">
             </div>
             <div class="form-group mb-3">
                 <label for="productPrice" style="font-family: cambria;"> Product Price</label>
-                <input class="form-control mt-2" type="text" placeholder="Product Price">
+                <input class="form-control mt-2" name="price" type="text" placeholder="Product Price">
+            </div>
+            <div class="form-group mb-3">
+                <label for="formFileMultiple" class="form-label">Product Images</label>
+                <input class="form-control" name="file" type="file" id="formFileMultiple" multiple>
             </div>
             <div class="form-group mb-5">
-                <label for="formFileMultiple" class="form-label">Product Images</label>
-                <input class="form-control" type="file" id="formFileMultiple" multiple>
+                <label for="posttype" style="font-family: cambria;">Type</label>
+                <select class="form-control mt-2" id="posttype" name="type">
+                    <option value="1">Shirt</option>
+                </select>
             </div>
             <div class="row no-gutters justify-content-end">
-                <button type="submit" name="submit"  class="btn btn-outline-secondary mb-2">Post</button>
-                <button class="btn btn-outline-warning ">Cancel</button>
+                <input type="submit" name="submit" class="btn btn-outline-info mb-3" value="POST">
+                <input type="submit" class="btn btn-outline-info mb-3" value="CANCLE">
             </div>
         </form>
     </div>

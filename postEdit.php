@@ -1,3 +1,38 @@
+<?php
+include_once "./sysgem/postGenerated.php";
+if(isset($_GET['pid'])){
+    $pid=$_GET['pid'];
+    $result=getSinglePost($pid);
+    $posts=[];
+    foreach($result as $item){
+        $posts["name"]=$item["name"];
+        $posts["price"]=$item["price"];
+        $posts["img"]=$item["img"];
+        echo $item["img"];
+
+    }
+  
+}
+
+if(isset($_POST['submit'])){
+    $file=$_FILES["file"];
+    $imgname="";
+    if($_FILES["file"]["name"]!= null){
+        $imgname=mt_rand(time(),time())."_".$_FILES["file"]["name"];
+        move_uploaded_file($_FILES["file"]["tmp_name"],"image/".$imgname);
+    }else{
+        $imgname=$_POST["oldimg"];
+    }
+    $name=$_POST["name"];
+    $price=$_POST["price"];
+    $imglink=$imgname;
+    $type=$_POST["type"];
+    $pid=$_GET["pid"];
+    editPost($name,$price,$imglink,$type,$pid);
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,22 +65,28 @@
         <h1>Creation Products</h1>
     </div>
     <div class="container">
-        <form method ="post" action ="admin.php" enctype="multipart/form-data" class="mt-5">
+        <form method ="post" action ="postEdit.php?pid=<?php echo $_GET["pid"]; ?>" enctype="multipart/form-data" class="mt-5">
             <div class="form-group mb-3">
                 <label for="productName" style="font-family: cambria;">Product Name</label>
-                <input class="form-control mt-2" type="text" placeholder="Product Name">
+                <input class="form-control mt-2"name="name" type="text" placeholder="Product Name" value="<?php  echo $posts["name"]; ?>">
             </div>
             <div class="form-group mb-3">
                 <label for="productPrice" style="font-family: cambria;"> Product Price</label>
-                <input class="form-control mt-2" type="text" placeholder="Product Price">
+                <input class="form-control mt-2" type="text" name="price" placeholder="Product Price" value="<?php  echo $posts["price"]; ?>">
             </div>
             <div class="form-group mb-5">
                 <label for="formFileMultiple" class="form-label">Product Images</label>
-                <input class="form-control" type="file" id="formFileMultiple" multiple>
+                <input class="form-control" type="file" name="file" id="formFileMultiple" multiple value="<?php  echo $posts["img"]; ?>">
+            </div>
+            <div class="form-group mb-5">
+                <label for="posttype" style="font-family: cambria;">Type</label>
+                <select class="form-control mt-2" id="posttype" name="type">
+                    <option value="1">Shirt</option>
+                </select>
             </div>
             <div class="row no-gutters justify-content-end">
-                <button type="submit" name="submit"  class="btn btn-outline-secondary mb-2">Edit</button>
-                <button class="btn btn-outline-warning ">Cancel</button>
+                <input type="submit" name="submit" class="btn btn-outline-info mb-3" value="Edit">
+                <input type="submit" class="btn btn-outline-info mb-3" value="Cancel">
             </div>
         </form>
     </div>
