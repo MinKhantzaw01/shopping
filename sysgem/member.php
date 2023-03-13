@@ -2,7 +2,7 @@
 require_once "dbHacker.php";  
 
 function registerUser($username,$email,$password,$phone){
-    if(usernameCheck($username) && emailCheck($email) && passwordCheck($password)){
+    if(usernameCheck($username) && emailCheck($email) && passwordCheck($password)&&phoneCheck($phone)){
         return insertUser($username,$email,$password,$phone);
     }else{
         echo "FALSE";
@@ -24,7 +24,20 @@ function OrderUser($name,$email,$pass,$phone,$address,$node){
         echo "FALSE";
     }
 }
-
+function registerAdmin($name,$email,$password){
+    if(usernameCheck($name) && emailCheck($email) && passwordCheck($password)){
+        return insertadmin($name,$email,$password);
+    }else{
+        echo "FALSE";
+    }
+}
+function loginAdmin($email,$password){
+    if(emailCheck($email) && passwordcheck($password)){
+        return adminLogin($email,$password);
+    }else{
+        return "Auth Fail!";
+    }
+}
 
 function usernameCheck($username){
     if(strlen($username) >= 6){

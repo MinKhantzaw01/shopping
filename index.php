@@ -4,8 +4,6 @@ include_once "./inc/html_head.php";
 <?php
 include_once "./sysgem/session.php";
 include_once "./sysgem/dbHacker.php";
-
-
 ?>
 
 

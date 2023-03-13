@@ -1,4 +1,5 @@
 <?php
+
 function setSession($key,$value){
     $_SESSION[$key]=$value;
 }
